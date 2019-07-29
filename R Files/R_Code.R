@@ -74,7 +74,7 @@ for(iterations in 1:1000){
 print(testC)
 
 #Question 1 (Part D)
-plot(density(testC))
+plot(density(testC), main = "Density Curve Of the Final Points")
 curve(dnorm(x, mean=0, sd=5 * sqrt(50/3)),  col="red", lwd=2, add=TRUE, yaxt="n")
 # testA = c()
 # veca <- vector()
