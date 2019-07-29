@@ -24,9 +24,10 @@ generateWalkFunc <- function(numSteps, stepRange){
       #print(randomWalk[i])
       vec <- c(vec, randomWalk[i])
     }
-    currentPoint <- randomWalk[i]
+    currentPoint <- randomWalk[i] #set the current point to the current point of the random walk
   }
-  print(vec)
+  print(vec) #print the final vector showing all the points taken in the 100 steps
+  #plot the randomly generated steps as a line plot
   plot(randomWalk, type = "l", main = paste("Random Walks Generated From ", numSteps, " Steps"))
 }
 #Calling the above function with a 100 steps each with a maximum size of 1 from each current position
