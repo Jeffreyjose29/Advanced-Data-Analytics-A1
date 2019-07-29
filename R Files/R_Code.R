@@ -73,9 +73,9 @@ for(iterations in 1:1000){
 }
 print(testC)
 
-
-
-
+#Question 1 (Part D)
+plot(density(testC))
+lines(seq(-15, 15, .01), dnorm(seq(-15, 15, .01), mean(0), sd(5 * sqrt(50/3))), col="red")
 # testA = c()
 # veca <- vector()
 # veca <- c(9, 5, 3, 6, 3, 6, 7, 1, 67)
