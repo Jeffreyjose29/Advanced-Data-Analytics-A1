@@ -1,4 +1,10 @@
-#Question 1
+####################################### STATS321 ASSIGNMENT ONE ######################################
+              ############################ JEFFREY JOSE #################################
+
+######### QUESTION ONE ##########
+
+### PART A ###
+
 #Initialising a function that generates a random walk
 #@params numSteps - number of steps, stepRange - maximum size of step
 generateWalkFunc <- function(numSteps, stepRange){
@@ -30,11 +36,16 @@ generateWalkFunc <- function(numSteps, stepRange){
   #plot the randomly generated steps as a line plot
   plot(randomWalk, type = "l", main = paste("Random Walks Generated From ", numSteps, " Steps"))
 }
+
+### PART B ###
+
 #Calling the above function with a 100 steps each with a maximum size of 1 from each current position
 generateWalkFunc(100, 1)
 
 
-#Question 1 (Part C)
+### PART C ###
+
+#Similiar function to the one defined above
 generateWalkFuncPartC <- function(numSteps, stepRange){
   #define the initial starting point
   initial.value <- 0
@@ -64,23 +75,22 @@ generateWalkFuncPartC <- function(numSteps, stepRange){
   #plot the randomly generated steps as a line plot
   plot(randomWalk, type = "l", main = paste("Random Walks Generated From ", numSteps, " Steps"))
   
-  return(tail(vec, n = 1))
+  return(tail(vec, n = 1)) #return the last position of each vector
 }
 
-testC <- c()
+testC <- c() #empty vector to hold all the 1000 final positions
 for(iterations in 1:1000){
+  #iterate through 1000 function calling and append each final position onto testC
   testC <- append(testC, generateWalkFuncPartC(50, 5), after = length(testC))
 }
-print(testC)
+print(testC) #print the final vector containing the 1000 final positions
 
-#Question 1 (Part D)
+### PART D ###
+
+#Plot the density graph of the 1000 final positions with a defined normal curve superimposed
 plot(density(testC), main = "Density Curve Of the Final Points")
 curve(dnorm(x, mean=0, sd=5 * sqrt(50/3)),  col="red", lwd=2, add=TRUE, yaxt="n")
-# testA = c()
-# veca <- vector()
-# veca <- c(9, 5, 3, 6, 3, 6, 7, 1, 67)
-# veca <- vector()
-# veca <- c(9, 5, 3, 6, 3, 6, 7, 1, 10)
-# testA <- append(testA, tail(veca, n = 1), after = length(testA))
-# 
-# print(testA)
+
+
+
+######### QUESTION TWO ##########
