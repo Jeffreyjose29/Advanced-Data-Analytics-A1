@@ -94,3 +94,37 @@ curve(dnorm(x, mean=0, sd=5 * sqrt(50/3)),  col="red", lwd=2, add=TRUE, yaxt="n"
 
 
 ######### QUESTION TWO ##########
+
+### Initial Setup ###
+
+getwd() #get the current working directory
+setwd('C:/Users/Jeffrey Jose/Desktop/Stats321 A1/R Files') #set the working directory to save and open files to and from
+#read the csv file into a dataframe object called 'blood.df'
+blood.df <- read.csv(file = 'C:/Users/Jeffrey Jose/Desktop/Stats321 A1/R Files/blood.csv', header = TRUE, sep = ',')
+head(blood.df) #show the first 6 rows of the dataset
+colnames(blood.df) #show all the column headers in the dataset
+
+#Check the data types to ensure everything is right
+typeof(blood.df$Sex) #Sex is indicated as integer when it is categorical so need to change that
+typeof(blood.df$Age)
+typeof(blood.df$RedBCC)
+typeof(blood.df$Haemoglobin)
+
+blood.df$Sex <- as.factor(blood.df$Sex)
+head(blood.df$Sex)
+
+
+### PART A ###
+
+#Ask Bob whether sex is required within this plot as it is categorical
+pairs(~Sex + Age + RedBCC + Haemoglobin, data = blood.df, main = "Simple Scatterplot Between Pairs Of Variables Given In The Dataset")
+
+### PART B ###
+
+boxplot(Haemoglobin ~ Sex, data = blood.df, main = "Haemoglobin Difference In Males And Females", xlab = "Sex", 
+        ylab = "Haemoglobin Levels (g/dl)", col = "orange", border = "brown")
+
+### PART C ###
+
+HaemoglobinSex.lm = lm(Haemoglobin ~ Sex, data = blood.df)
+summary(HaemoglobinSex.lm)
