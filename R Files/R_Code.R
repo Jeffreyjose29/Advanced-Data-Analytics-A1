@@ -113,7 +113,6 @@ typeof(blood.df$Haemoglobin)
 blood.df$Sex <- as.factor(blood.df$Sex)
 head(blood.df$Sex)
 
-
 ### PART A ###
 
 #Ask Bob whether sex is required within this plot as it is categorical
@@ -126,5 +125,29 @@ boxplot(Haemoglobin ~ Sex, data = blood.df, main = "Haemoglobin Difference In Ma
 
 ### PART C ###
 
-HaemoglobinSex.lm = lm(Haemoglobin ~ Sex, data = blood.df)
-summary(HaemoglobinSex.lm)
+mod1 <- lm(Haemoglobin ~ Sex, data = blood.df)
+summary(mod1)
+
+#Releveling to make "M" the baseline category
+table(blood.df$Sex)
+blood.df$Sex <- relevel(blood.df$Sex, ref = "F")
+
+### Part D ###
+
+fit.lm <- lm(Haemoglobin ~ Sex + RedBCC + Sex:RedBCC, data = blood.df)
+summary(fit.lm)
+
+### Part E ###
+
+par(mfrow = c(2,2))
+plot(fit.lm)
+
+### Part F ###
+
+par(mfrow = c(1,1))
+#Visually look at the distribution of the residuals of the model
+hist(residuals(fit.lm))
+boxplot(residuals(fit.lm))
+shapiro.test(residuals(fit.lm)) #shapiro wilks test to gain the p-value to test for the assumption of normaility of the residuals.
+
+### Part G ###
