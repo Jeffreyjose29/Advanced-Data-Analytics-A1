@@ -151,3 +151,11 @@ boxplot(residuals(fit.lm))
 shapiro.test(residuals(fit.lm)) #shapiro wilks test to gain the p-value to test for the assumption of normaility of the residuals.
 
 ### Part G ###
+
+newRedBCC = seq(3.5, 6, length = 100)
+newHaemoglobinF = predict(fit.lm, data.frame(RedBCC = newRedBCC, Sex = "F"))
+newHaemoglobinM = predict(fit.lm, data.frame(RedBCC = newRedBCC, Sex = "M"))
+
+plot(newRedBCC, newHaemoglobinF, main="Predicted Haemoglobin Levels", ylab="Haemoglobin", xlab="RedBCC")
+points(newRedBCC, newHaemoglobinM, col="red", pch=2)
+legend(3.5,18,c("Female","Male"), col=c("black", "red"), pch=c(1,2))
