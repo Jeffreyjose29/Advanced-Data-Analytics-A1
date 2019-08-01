@@ -105,13 +105,10 @@ head(blood.df) #show the first 6 rows of the dataset
 colnames(blood.df) #show all the column headers in the dataset
 
 #Check the data types to ensure everything is right
-typeof(blood.df$Sex) #Sex is indicated as integer when it is categorical so need to change that
+typeof(blood.df$Sex) 
 typeof(blood.df$Age)
 typeof(blood.df$RedBCC)
 typeof(blood.df$Haemoglobin)
-
-blood.df$Sex <- as.factor(blood.df$Sex)
-head(blood.df$Sex)
 
 ### PART A ###
 
@@ -127,7 +124,6 @@ boxplot(Haemoglobin ~ Sex, data = blood.df, main = "Haemoglobin Difference In Ma
 
 mod1 <- lm(Haemoglobin ~ Sex, data = blood.df)
 summary(mod1)
-
 #Releveling to make "M" the baseline category
 table(blood.df$Sex)
 blood.df$Sex <- relevel(blood.df$Sex, ref = "F")
@@ -159,3 +155,28 @@ newHaemoglobinM = predict(fit.lm, data.frame(RedBCC = newRedBCC, Sex = "M"))
 plot(newRedBCC, newHaemoglobinF, main="Predicted Haemoglobin Levels", ylab="Haemoglobin", xlab="RedBCC")
 points(newRedBCC, newHaemoglobinM, col="red", pch=2)
 legend(3.5,18,c("Female","Male"), col=c("black", "red"), pch=c(1,2))
+
+### Part H ###
+## Q1 ##
+
+X <- model.matrix(fit.lm) #the model matrix of the linear model
+y <- c()
+y <- c(blood.df$Haemoglobin) #vector of haemoglobin values
+
+#Estimates of the least squares estimates of the regression coefficient 
+coef(fit.lm)
+
+## Q2 ##
+
+#Creating the hat matrix
+#Unsure so need to ask Bob if done correctly?
+H = X%*%(solve(t(X)%*%X)%*%t(X)) 
+nrow(H)
+ncol(H)
+diag(H)[1]
+print(H[1:3, 1:3]) #print first 3 rows and columns of the hat matrix
+
+## Q3 ##
+
+#transpose of the hat matrix
+t(H) * y
