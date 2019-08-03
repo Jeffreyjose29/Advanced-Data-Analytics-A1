@@ -156,27 +156,4 @@ plot(newRedBCC, newHaemoglobinF, main="Predicted Haemoglobin Levels", ylab="Haem
 points(newRedBCC, newHaemoglobinM, col="red", pch=2)
 legend(3.5,18,c("Female","Male"), col=c("black", "red"), pch=c(1,2))
 
-### Part H ###
-## Q1 ##
 
-X <- model.matrix(fit.lm) #the model matrix of the linear model
-y <- c()
-y <- c(blood.df$Haemoglobin) #vector of haemoglobin values
-
-#Estimates of the least squares estimates of the regression coefficient 
-coef(fit.lm)
-
-## Q2 ##
-
-#Creating the hat matrix
-#Unsure so need to ask Bob if done correctly?
-H = X%*%(solve(t(X)%*%X)%*%t(X)) 
-nrow(H)
-ncol(H)
-diag(H)[1]
-print(H[1:3, 1:3]) #print first 3 rows and columns of the hat matrix
-
-## Q3 ##
-
-#transpose of the hat matrix
-t(H) * y
